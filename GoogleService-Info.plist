@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBIMIFvKoXNMUzYsSG2ueWE4q-YkA61Q8A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>213402842033</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.palatipjant.SwiftUIAuth</string>
+	<key>PROJECT_ID</key>
+	<string>swiftuiauthpalatip</string>
+	<key>STORAGE_BUCKET</key>
+	<string>swiftuiauthpalatip.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:213402842033:ios:5785c0f1bd1c8347558390</string>
+</dict>
+</plist>

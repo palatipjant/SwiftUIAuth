@@ -11,6 +11,7 @@ struct LoginView: View {
     
     @State var email: String = ""
     @State var password: String = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         NavigationStack{
@@ -38,7 +39,9 @@ struct LoginView: View {
                 }.padding(.horizontal)
                 //Sign in button
                 Button(action: {
-                    print("user login")
+                    Task{
+                        try await viewModel.signIn(withEmail: email, password: password)
+                    }
                 }, label: {
                     Label("Sign in", systemImage: "arrow.right")
                         .foregroundStyle(.white)
