@@ -30,23 +30,43 @@ struct RegistrationView: View {
                 InputView(text: $email,
                           title: "Email Address",
                           placeholder: "example@example.com")
-                .textInputAutocapitalization(.none)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled(true)
                 
                 InputView(text: $fullname,
                           title: "Fullname",
                           placeholder: "Enter your full name")
+                .autocorrectionDisabled(true)
                 
                 InputView(text: $password,
                           title: "Password",
                           placeholder: "Enter your password",
                           isSecureField: true)
-                .textInputAutocapitalization(.none)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled(true)
                 
-                InputView(text: $confirmpassword,
-                          title: "Password",
-                          placeholder: "Confirm your password",
-                          isSecureField: true)
-                .textInputAutocapitalization(.none)
+                ZStack(alignment: .trailing, content: {
+                    InputView(text: $confirmpassword,
+                              title: "Confirm Password",
+                              placeholder: "Confirm your password",
+                              isSecureField: true)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled(true)
+                    
+                    if !password.isEmpty && !confirmpassword.isEmpty {
+                        if password == confirmpassword {
+                            Image(systemName: "checkmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.green)
+                        } else {
+                            Image(systemName: "checkmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.red)
+                        }
+                    }
+                })
                 
             }.padding(.horizontal)
                 .padding(.top,12)
@@ -63,7 +83,10 @@ struct RegistrationView: View {
                     .frame(width: UIScreen.main.bounds.width-32, height: 48)
                     .background(.blue)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-            }).padding(.top, 24)
+            })
+            .disabled(!formIsValid)
+            .opacity(formIsValid ? 1.0 : 0.5)
+            .padding(.top, 24)
             
             Spacer()
             
@@ -78,6 +101,18 @@ struct RegistrationView: View {
                 .font(.system(size: 14))
             })
         }
+    }
+}
+
+// MARK: - AuthenticationFormProtocol
+extension RegistrationView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && confirmpassword == password
+        && !fullname.isEmpty
     }
 }
 
